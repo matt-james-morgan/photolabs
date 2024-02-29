@@ -9,9 +9,9 @@ function PhotoFavButton() {
 
   const [selected, setSelected] = useState(false);
 
-  const handleClick = useCallback(()=>{
-    setSelected(!selected);
-  })
+  const handleClick = () =>{
+    setSelected(prev => !prev);
+  }
 
   return (
     <div className="photo-list__fav-icon" onClick={handleClick}>
