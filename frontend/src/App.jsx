@@ -1,5 +1,7 @@
 import React from 'react';
-
+import TopNavigation from 'components/TopNavigationBar';
+import TopicList from 'components/TopicList';
+import FavBadge from 'components/FavBadge';
 import HomeRoute from 'routes/HomeRoute';
 
 
@@ -7,6 +9,10 @@ import HomeRoute from 'routes/HomeRoute';
 const App = () => {
   return (
     <div className="App">
+      <TopNavigation>
+        <TopicList />
+        <FavBadge />
+      </TopNavigation>
       <HomeRoute />
     </div>
   );
