@@ -1,5 +1,6 @@
 import React from 'react';
-
+import photos from 'mocks/photos';
+import topics from 'mocks/topics';
 import HomeRoute from 'routes/HomeRoute';
 
 
@@ -7,7 +8,7 @@ import HomeRoute from 'routes/HomeRoute';
 const App = () => {
   return (
     <div className="App">
-      <HomeRoute />
+      <HomeRoute photos={photos} topics={topics} />
     </div>
   );
 };

@@ -5,14 +5,14 @@ import FavBadge from 'components/FavBadge';
 import PhotoList from 'components/PhotoList';
 import '../styles/HomeRoute.scss';
 
-const HomeRoute = () => {
+const HomeRoute = (props) => {
   return (
     <div className="home-route">
       <TopNavigation>
-        <TopicList />
+        <TopicList topics={props.topics}/>
         <FavBadge />
       </TopNavigation>
-      <PhotoList />
+      <PhotoList photos={props.photos} />
     </div>
   );
 };
