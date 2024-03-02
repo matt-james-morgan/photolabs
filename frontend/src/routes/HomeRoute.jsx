@@ -9,9 +9,10 @@ import photos from 'mocks/photos';
 const HomeRoute = (props) => {
 
   const stateObject = photos.reduce((result, _, index) => {
-    result[index] = false;
+    result[index + 1] = false;
     return result;
   }, {});
+  console.log(stateObject);
 
   const [state, dispatch] = useReducer((state, action)=>{
     switch(action.type){
@@ -32,7 +33,7 @@ const HomeRoute = (props) => {
         <TopicList topics={props.topics}/>
         <FavBadge isFavPhotoExist={isFavPhotoExist}/>
       </TopNavigation>
-      <PhotoList photos={props.photos} dispatch={dispatch} state={state} setModal={props.setModal} modal={props.modal}/>
+      <PhotoList photos={props.photos} dispatch={dispatch} state={state} modalDispatch={props.modalDispatch} modalState={props.modalState}/>
      
     </div>
   );

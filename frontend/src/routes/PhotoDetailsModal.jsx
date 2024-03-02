@@ -1,12 +1,20 @@
 import React from 'react';
-
+import photos from 'mocks/photos';
 import '../styles/PhotoDetailsModal.scss'
 import closeSymbol from '../assets/closeSymbol.svg';
 
 const PhotoDetailsModal = (props) => {
+  
 
   const handleClick = () =>{
-    props.setModal(false);
+    const action = {
+      type: 'DISPLAY',
+      payload:{
+        display: false,
+        id: 0
+      }
+  };
+    props.modalDispatch(action);
   }
 
   return (
