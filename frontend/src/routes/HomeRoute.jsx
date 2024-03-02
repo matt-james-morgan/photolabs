@@ -4,13 +4,16 @@ import TopicList from 'components/TopicList';
 import FavBadge from 'components/FavBadge';
 import PhotoList from 'components/PhotoList';
 import '../styles/HomeRoute.scss';
+import photos from 'mocks/photos';
 
 const HomeRoute = (props) => {
 
-  
+  const stateObject = photos.reduce((result, _, index) => {
+    result[index] = false;
+    return result;
+  }, {});
 
   const [state, dispatch] = useReducer((state, action)=>{
-    console.log(action);
     switch(action.type){
       
       case "FAVOURITE":
@@ -19,13 +22,15 @@ const HomeRoute = (props) => {
         return state;
       
     }
-  },{1: false, 2: false, 3:false, 4:false, 5: false, 6: false, 7:false, 8: false, 9: false});
+  },stateObject);
+
+  const isFavPhotoExist = Object.values(state).includes(true);
 
   return (
     <div className="home-route">
       <TopNavigation>
         <TopicList topics={props.topics}/>
-        <FavBadge />
+        <FavBadge isFavPhotoExist={isFavPhotoExist}/>
       </TopNavigation>
       <PhotoList photos={props.photos} dispatch={dispatch} state={state}/>
     </div>
