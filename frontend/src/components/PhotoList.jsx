@@ -60,7 +60,7 @@ const sampleDataForPhotoList = [
 const PhotoList = (props) => {
   return(<ul className="photo-list">
    {props.photos.map((photo, index) => 
-        <PhotoListItem key={index} data={photo}/>
+        <PhotoListItem key={index} data={photo} state={props.state} dispatch={props.dispatch}/>
   )}
   </ul>)
 }
