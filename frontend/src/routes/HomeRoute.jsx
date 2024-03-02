@@ -32,7 +32,8 @@ const HomeRoute = (props) => {
         <TopicList topics={props.topics}/>
         <FavBadge isFavPhotoExist={isFavPhotoExist}/>
       </TopNavigation>
-      <PhotoList photos={props.photos} dispatch={dispatch} state={state}/>
+      <PhotoList photos={props.photos} dispatch={dispatch} state={state} setModal={props.setModal} modal={props.modal}/>
+     
     </div>
   );
 };

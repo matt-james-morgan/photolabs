@@ -8,7 +8,7 @@ import "../styles/PhotoListItem.scss";
 const PhotoListItem = (props) => {
     
     return (
-      <li  className="photo-list__item">
+      <li  className="photo-list__item" onClick={props.onClick}>
       <PhotoFavButton selected={props.state[props.data.id]} dispatch={props.dispatch} id={props.data.id} state={props.state}/>
       <img className="photo-list__image"  src={props.data.urls.regular}></img>
       <div className="photo-list__user-details">
