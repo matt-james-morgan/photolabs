@@ -18,7 +18,7 @@ const HomeRoute = (props) => {
         <TopicList topics={props.topics}/>
         <FavBadge isFavPhotoExist={isFavPhotoExist}/>
       </TopNavigation>
-      <PhotoList photos={props.photos} dispatch={props.dispatch} state={props.state} modalDispatch={props.modalDispatch} modalState={props.modalState}/>
+      <PhotoList photos={props.photos} dispatch={props.dispatch} state={props.state} />
      
     </div>
   );

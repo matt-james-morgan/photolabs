@@ -3,6 +3,7 @@ import photos from 'mocks/photos';
 import topics from 'mocks/topics';
 import HomeRoute from 'routes/HomeRoute';
 import PhotoDetailsModal from 'routes/PhotoDetailsModal';
+// import {state, dispatch, modalDispatch, modalState} from '../src/hooks/useApplicationData'
 
 
 
@@ -20,25 +21,26 @@ const App = () => {
       
       case "FAVOURITE":
         return {...state, [action.id]: action.payload}
-      default:
-        return state;
       
+      case "DISPLAY": 
+        return {...state, modalDisplay: action.payload.modalDisplay, modalId: action.payload.modalId};
+      default:
+          return state;
     }
-  },stateObject);
+  },{...stateObject,modalId: 0, modalDisplay: false} );
 
   const [modalState, modalDispatch ] = useReducer((modalState, action)=>{
 
     switch(action.type){
-      case "DISPLAY": 
-        return {...modalState, display: action.payload.display, id: action.payload.id};
+      
     }
 
-  },{id: 0, display: false});
+  },{});
 
   return (
     <div className="App">
-      <HomeRoute photos={photos} topics={topics} modalDispatch={modalDispatch} modalState={modalState}  state={state} dispatch={dispatch}/>
-      {modalState.display && <PhotoDetailsModal modalState={modalState} modalDispatch={modalDispatch} state={state} dispatch={dispatch}/>}
+      <HomeRoute photos={photos} topics={topics} state={state} dispatch={dispatch}/>
+      {state.modalDisplay && <PhotoDetailsModal modalState={modalState} modalDispatch={modalDispatch} state={state} dispatch={dispatch}/>}
     </div>
   );
 };

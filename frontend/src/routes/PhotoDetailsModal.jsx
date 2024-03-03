@@ -7,27 +7,27 @@ import PhotoList from 'components/PhotoList';
 
 const PhotoDetailsModal = (props) => {
   
-  console.log('these are the props', props.modalState.id, "state", props.state);
 
   const handleClick = () =>{
     const action = {
       type: 'DISPLAY',
       payload:{
-        display: false,
-        id: 0
+        modalDisplay: false,
+        modalId: 0
       }
   };
-    props.modalDispatch(action);
+    props.dispatch(action);
   }
 
-  const photolink = props.modalState.id > 0 ? photos.find(photo => photo.id === props.modalState.id) : null;
+  const photolink = props.state.modalId > 0 ? photos.find(photo => photo.id === props.state.modalId) : null;
 
   return (
     <div className="photo-details-modal">
       <button className="photo-details-modal__close-button" onClick={handleClick}>
         <img src={closeSymbol} alt="close symbol" />
       </button>
-      <PhotoFavButton selected={props.state[props.modalState.id]} dispatch={props.dispatch} id={props.modalState.id} state={props.state}/>
+      <div className="photo-details-modal__images">
+      <PhotoFavButton selected={props.state[props.state.modalId]} dispatch={props.dispatch} id={props.state.modalId} state={props.state}/>
       <img className="photo-details-modal__image"  src={photolink.urls.regular}></img>
       <div className="photo-details-modal__header">
         <img className="photo-list__user-profile" src={photolink.user.profile}></img>
@@ -38,7 +38,8 @@ const PhotoDetailsModal = (props) => {
           </p>
         </div>
       </div>
-      <PhotoList photos={Object.values(photolink.similar_photos)} dispatch={props.dispatch} state={props.state} modalDispatch={props.modalDispatch} modalState={props.modalState}/>
+      <PhotoList photos={Object.values(photolink.similar_photos)} dispatch={props.dispatch} state={props.state} />
+      </div>
     </div>
   )
 };

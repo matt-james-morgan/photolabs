@@ -11,11 +11,11 @@ const PhotoListItem = (props) => {
     const action = {
       type: 'DISPLAY',
       payload:{
-        display: true,
-        id: props.data.id
+        modalDisplay: true,
+        modalId: props.data.id
       }
   };
-  props.modalDispatch(action);
+  props.dispatch(action);
   }
     
     return (
