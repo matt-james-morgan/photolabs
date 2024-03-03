@@ -10,7 +10,7 @@ const PhotoDetailsModal = (props) => {
 
   const handleClick = () =>{
     const action = {
-      type: 'DISPLAY',
+      type: 'onClosePhotoDetailsModal',
       payload:{
         modalDisplay: false,
         modalId: 0

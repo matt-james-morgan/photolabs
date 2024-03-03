@@ -25,11 +25,5 @@ export default function useApplicationData (){
     }
   },{...stateObject,modalId: 0, modalDisplay: false} );
 
-  const [modalState, modalDispatch ] = useReducer((modalState, action)=>{
-
-    switch(action.type){
-      
-    }
-
-  },{});
+ return {state,dispatch}
 }
