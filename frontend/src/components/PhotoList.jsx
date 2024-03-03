@@ -59,11 +59,10 @@ const sampleDataForPhotoList = [
 
 const PhotoList = (props) => {
   
-  console.log(props.modalState);
 
   return(<ul className="photo-list">
    {props.photos.map((photo, index) => 
-        <PhotoListItem key={index} data={photo} modalState={props.modalState} modalDispatch={props.modalDispatch} />
+        <PhotoListItem key={index} data={photo} modalState={props.modalState} modalDispatch={props.modalDispatch} dispatch={props.dispatch} state={props.state}/>
   )}
   </ul>)
 }

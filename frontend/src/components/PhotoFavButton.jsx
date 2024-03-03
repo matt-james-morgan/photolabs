@@ -7,7 +7,7 @@ import '../styles/PhotoFavButton.scss';
 
 function PhotoFavButton(props) {
   
-  
+  console.log("props from fave button", props);
 
   const handleClick = (state) => {
     const action = {
