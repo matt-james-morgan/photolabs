@@ -55,9 +55,15 @@ export default function useApplicationData() {
       fetch(`http://localhost:8001/api/topics/photos/${state.topicID}`)
     .then((res)=>{return res.json()})
     .then((res)=>{
-      dispatch({type:"SET_PHOTOS_TOPIC", payload:res})})
-  }
+      dispatch({type:"SET_PHOTOS_TOPIC", payload:res})
+      dispatch({type:"SET_PHOTO_DATA", payload:res})
     }
+      )
+  
+    }
+
+  }
+
     , [state.topicID]);
 
  
