@@ -5,7 +5,6 @@ import { useReducer, useEffect } from "react";
 export default function useApplicationData() {
 
   const initialState = {
-
     photoData: [],
     topicData: []
   }
@@ -17,11 +16,14 @@ export default function useApplicationData() {
     switch (action.type) {
       case "SET_PHOTO_DATA":
         return {...state, photoData: action.payload}
-        case "SET_TOPIC_DATA":
+      case "SET_TOPIC_DATA":
           return {...state, topicData: action.payload}
+      case "GET_PHOTOS_BY_TOPIC":
+        return {...state, topicID: action.payload}
+      case "SET_TOPIC_PHOTOS":
+        return {...state, topicPhotos: action.payload}
       case "updateToFavPhotoIds":
         return { ...state, [action.id]: action.payload }
-
       case "setPhotoSelected":
         return { ...state, modalDisplay: action.payload.modalDisplay, modalId: action.payload.modalId };
       case "onClosePhotoDetailsModal":
@@ -35,7 +37,6 @@ export default function useApplicationData() {
     fetch('http://localhost:8001/api/photos')
     .then((res)=>{return res.json()})
     .then((res)=>{
-      console.log('res', res);
       dispatch({type:"SET_PHOTO_DATA", payload:res})})
   }, [])
 
@@ -43,10 +44,21 @@ export default function useApplicationData() {
     fetch('http://localhost:8001/api/topics')
     .then((res)=>{return res.json()})
     .then((res)=>{
-      console.log('res topics', res);
       dispatch({type:"SET_TOPIC_DATA", payload:res})})
   }, [])
 
+
+
+  useEffect(()=>{
+
+    if(state.topicID){
+      fetch(`http://localhost:8001/api/topics/photos/${state.topicID}`)
+    .then((res)=>{return res.json()})
+    .then((res)=>{
+      dispatch({type:"SET_PHOTOS_TOPIC", payload:res})})
+  }
+    }
+    , [state.topicID]);
 
  
   return { state, dispatch }

@@ -4,7 +4,7 @@ import TopicList from 'components/TopicList';
 import FavBadge from 'components/FavBadge';
 import PhotoList from 'components/PhotoList';
 import '../styles/HomeRoute.scss';
-import photos from 'mocks/photos';
+
 
 const HomeRoute = (props) => {
 
@@ -15,7 +15,7 @@ const HomeRoute = (props) => {
   return (
     <div className="home-route">
       <TopNavigation>
-        <TopicList topics={props.topics}/>
+        <TopicList topics={props.topics} dispatch={props.dispatch} state={props.state}/>
         <FavBadge isFavPhotoExist={isFavPhotoExist}/>
       </TopNavigation>
       <PhotoList photos={props.photos} dispatch={props.dispatch} state={props.state} />
