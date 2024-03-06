@@ -1,5 +1,5 @@
 import React, {useReducer} from 'react';
-import photos from 'mocks/photos';
+
 import topics from 'mocks/topics';
 import HomeRoute from 'routes/HomeRoute';
 import PhotoDetailsModal from 'routes/PhotoDetailsModal';
@@ -14,10 +14,10 @@ const App = () => {
     state,
     dispatch
   } = useApplicationData();
-
+  console.log("state", state);
   return (
     <div className="App">
-      <HomeRoute photos={photos} topics={topics} state={state} dispatch={dispatch}/>
+      <HomeRoute photos={state.photoData} topics={state.topicData} state={state} dispatch={dispatch}/>
       {state.modalDisplay && <PhotoDetailsModal  state={state} dispatch={dispatch}/>}
     </div>
   );
