@@ -10,16 +10,16 @@ const HomeRoute = (props) => {
 
   
 
-  const isFavPhotoExist = Object.values(props.state).includes(true);
-
+  const isFavPhotoExist = Object.values(props.state.favePhotos).includes(true);
+     
   return (
     <div className="home-route">
       <TopNavigation>
         <TopicList topics={props.topics} dispatch={props.dispatch} state={props.state}/>
-        <FavBadge isFavPhotoExist={isFavPhotoExist}/>
+        <FavBadge isFavPhotoExist={isFavPhotoExist} state={props.state} dispatch={props.dispatch}/>
       </TopNavigation>
-      <PhotoList photos={props.photos} dispatch={props.dispatch} state={props.state} />
-     
+      {!props.state.displayLikedPhotos && <PhotoList photos={props.photos} dispatch={props.dispatch} state={props.state} />}
+      {props.state.displayLikedPhotos && <PhotoList photos={props.state.likedPhotos} dispatch={props.dispatch} state={props.state} />}
     </div>
   );
 };

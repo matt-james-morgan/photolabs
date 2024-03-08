@@ -14,7 +14,6 @@ const App = () => {
     state,
     dispatch
   } = useApplicationData();
-  
   return (
     <div className="App">
       <HomeRoute photos={state.photoData} topics={state.topicData} state={state} dispatch={dispatch}/>

@@ -6,7 +6,9 @@ export default function useApplicationData() {
 
   const initialState = {
     photoData: [],
-    topicData: []
+    topicData: [],
+    favePhotos: [],
+    displayLikedPhotos: false
   }
 
   
@@ -22,12 +24,14 @@ export default function useApplicationData() {
         return {...state, topicID: action.payload}
       case "SET_TOPIC_PHOTOS":
         return {...state, topicPhotos: action.payload}
-      case "updateToFavPhotoIds":
-        return { ...state, [action.id]: action.payload }
+      case "SET_FAVE_PHOTOS":
+        return { ...state, favePhotos:{...state.favePhotos, [action.id]: action.payload} }
       case "setPhotoSelected":
         return { ...state, modalDisplay: action.payload.modalDisplay, modalId: action.payload.modalId };
       case "onClosePhotoDetailsModal":
         return { ...state, modalDisplay: action.payload.modalDisplay, modalId: action.payload.modalId };
+      case "GET_PHOTOS_BY_LIKE":
+        return {...state, likedPhotos: action.payload, displayLikedPhotos: action.display};
       default:
         return state;
     }
@@ -49,22 +53,19 @@ export default function useApplicationData() {
 
 
 
-  useEffect(()=>{
+useEffect(()=>{
 
     if(state.topicID){
-      fetch(`http://localhost:8001/api/topics/photos/${state.topicID}`)
+
+    fetch(`http://localhost:8001/api/topics/photos/${state.topicID}`)
     .then((res)=>{return res.json()})
     .then((res)=>{
       dispatch({type:"SET_PHOTOS_TOPIC", payload:res})
       dispatch({type:"SET_PHOTO_DATA", payload:res})
-    }
-      )
-  
-    }
-
+    })
   }
 
-    , [state.topicID]);
+}, [state.topicID]);
 
  
   return { state, dispatch }

@@ -11,8 +11,8 @@ function PhotoFavButton(props) {
 
   const handleClick = (state) => {
     const action = {
-      type: 'updateToFavPhotoIds',
-      payload: !state[props.id],
+      type: 'SET_FAVE_PHOTOS',
+      payload: !state.favePhotos[props.id],
       id: props.id
   };
   props.dispatch(action);
