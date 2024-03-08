@@ -19,8 +19,8 @@ const PhotoDetailsModal = (props) => {
     props.dispatch(action);
   }
 
-  const photolink = props.state.modalId > 0 ? photos.find(photo => photo.id === props.state.modalId) : null;
-
+  const photolink = props.state.modalId > 0 ? props.state.photoData.find(photo => photo.id === props.state.modalId) : null;
+  
   return (
     <div className="photo-details-modal">
       <button className="photo-details-modal__close-button" onClick={handleClick}>
