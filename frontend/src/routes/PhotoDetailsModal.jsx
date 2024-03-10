@@ -7,7 +7,7 @@ import PhotoList from 'components/PhotoList';
 
 const PhotoDetailsModal = (props) => {
   
-
+  //sets modal display to false to close modal
   const handleClick = () =>{
     const action = {
       type: 'onClosePhotoDetailsModal',
@@ -19,6 +19,7 @@ const PhotoDetailsModal = (props) => {
     props.dispatch(action);
   }
 
+  // Filters through photos to find selected on for modal and extracts the photo data
   const photolink = props.state.modalId > 0 ? props.state.photoData.find(photo => photo.id === props.state.modalId) : null;
   
   return (
@@ -38,6 +39,7 @@ const PhotoDetailsModal = (props) => {
           </p>
         </div>
       </div>
+      {/* this pulls out photo info from data that lniks similar photos */}
       <PhotoList photos={Object.values(photolink.similar_photos)} dispatch={props.dispatch} state={props.state} />
       </div>
     </div>

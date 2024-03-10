@@ -7,6 +7,7 @@ import "../styles/PhotoListItem.scss";
 
 const PhotoListItem = (props) => {
   
+  //when clicked sets modal state to true dislaying modal
   const handleClick = () => {
     const action = {
       type: 'setPhotoSelected',

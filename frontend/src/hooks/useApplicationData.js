@@ -9,9 +9,6 @@ export default function useApplicationData() {
     topicData: []
   }
 
-  
-  
-
   const [state, dispatch] = useReducer((state, action) => {
     switch (action.type) {
       case "SET_PHOTO_DATA":
@@ -33,6 +30,8 @@ export default function useApplicationData() {
     }
   }, { ...initialState, modalId: 0, modalDisplay: false });
 
+
+  //Fetches photo info from backend
   useEffect(()=>{
     fetch('http://localhost:8001/api/photos')
     .then((res)=>{return res.json()})
@@ -40,6 +39,7 @@ export default function useApplicationData() {
       dispatch({type:"SET_PHOTO_DATA", payload:res})})
   }, [])
 
+  //Fetches topic info from backend
   useEffect(()=>{
     fetch('http://localhost:8001/api/topics')
     .then((res)=>{return res.json()})
@@ -48,7 +48,7 @@ export default function useApplicationData() {
   }, [])
 
 
-
+  //fetches photo info related to specific topic from backend
   useEffect(()=>{
 
     if(state.topicID){

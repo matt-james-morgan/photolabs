@@ -8,7 +8,7 @@ import '../styles/PhotoFavButton.scss';
 function PhotoFavButton(props) {
   
   
-
+  // on click, updates state to fave specific photo based on id
   const handleClick = (state) => {
     const action = {
       type: 'updateToFavPhotoIds',

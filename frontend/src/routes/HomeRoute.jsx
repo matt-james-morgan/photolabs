@@ -9,7 +9,7 @@ import '../styles/HomeRoute.scss';
 const HomeRoute = (props) => {
 
   
-
+  //checks the state to see if photo is favourited, if true sets notification in nav bar 
   const isFavPhotoExist = Object.values(props.state).includes(true);
 
   return (
