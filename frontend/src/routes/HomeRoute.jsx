@@ -16,7 +16,7 @@ const HomeRoute = (props) => {
     <div className="home-route">
       <TopNavigation>
         <TopicList topics={props.topics} dispatch={props.dispatch} state={props.state}/>
-        <FavBadge isFavPhotoExist={isFavPhotoExist}/>
+        <FavBadge isFavPhotoExist={isFavPhotoExist} selected={isFavPhotoExist}/>
       </TopNavigation>
       <PhotoList photos={props.photos} dispatch={props.dispatch} state={props.state} />
      

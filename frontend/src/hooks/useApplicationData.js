@@ -31,21 +31,21 @@ export default function useApplicationData() {
   }, { ...initialState, modalId: 0, modalDisplay: false });
 
 
-  //Fetches photo info from backend
+  //Fetches photo info and topic info from backend
   useEffect(()=>{
-    fetch('http://localhost:8001/api/photos')
-    .then((res)=>{return res.json()})
-    .then((res)=>{
-      dispatch({type:"SET_PHOTO_DATA", payload:res})})
-  }, [])
+      Promise.all([
+      fetch('http://localhost:8001/api/photos').then(res=>res.json()),
+      fetch('http://localhost:8001/api/topics').then(res=>res.json())
+    ])
+    .then(([photos, topics])=>{
+      dispatch({type:"SET_PHOTO_DATA", payload:photos});
+      dispatch({type:"SET_TOPIC_DATA", payload:topics});
+    })
+    
+  }, []);
 
-  //Fetches topic info from backend
-  useEffect(()=>{
-    fetch('http://localhost:8001/api/topics')
-    .then((res)=>{return res.json()})
-    .then((res)=>{
-      dispatch({type:"SET_TOPIC_DATA", payload:res})})
-  }, [])
+
+ 
 
 
   //fetches photo info related to specific topic from backend
